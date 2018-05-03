@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Microsoft.eShopOnContainers.BuildingBlocks.EventBus.Events
+namespace Microsoft.ExxaTechServices.BuildingBlocks.EventBus.Events
 {
     public class IntegrationEvent
     {

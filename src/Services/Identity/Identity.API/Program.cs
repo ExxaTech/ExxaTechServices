@@ -1,11 +1,13 @@
 ﻿using IdentityServer4.EntityFramework.DbContexts;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.eShopOnContainers.Services.Identity.API;
-using Microsoft.eShopOnContainers.Services.Identity.API.Data;
+using Microsoft.ExxaTechServices.Services.Identity.API;
+using Microsoft.ExxaTechServices.Services.Identity.API.Data;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System.IO;
 
 namespace Identity.API
 {
@@ -25,12 +27,35 @@ namespace Identity.API
                         .SeedAsync(context, env, logger, settings)
                         .Wait();
                 })
+                .MigrateDbContext<ConfigurationDbContext>((context, services) =>
+                {
+                    var configuration = services.GetService<IConfiguration>();
+
+                    new ConfigurationDbContextSeed()
+                        .SeedAsync(context, configuration)
+                        .Wait();
+                })
                 .Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseKestrel()
+                .UseHealthChecks("/hc")
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
                 .UseStartup<Startup>()
+                .ConfigureAppConfiguration((builderContext, config) =>
+                {
+                    config.AddEnvironmentVariables();
+                })
+                .ConfigureLogging((hostingContext, builder) =>
+                {
+                    builder.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                    builder.AddConsole();
+                    builder.AddDebug();
+                })
+                .UseApplicationInsights()
                 .Build();
     }
 }

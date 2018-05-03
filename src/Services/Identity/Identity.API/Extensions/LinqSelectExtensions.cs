@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Microsoft.eShopOnContainers.Services.Identity.API.Extensions
+namespace Microsoft.ExxaTechServices.Services.Identity.API.Extensions
 {
     public static class LinqSelectExtensions
     {

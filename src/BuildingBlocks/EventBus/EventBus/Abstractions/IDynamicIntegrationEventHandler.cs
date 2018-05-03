@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Microsoft.eShopOnContainers.BuildingBlocks.EventBus.Abstractions
+namespace Microsoft.ExxaTechServices.BuildingBlocks.EventBus.Abstractions
 {
     public interface IDynamicIntegrationEventHandler
     {

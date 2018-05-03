@@ -2,7 +2,7 @@
 using IdentityServer4.Models;
 using System.Collections.Generic;
 
-namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
+namespace Microsoft.ExxaTechServices.Services.Identity.API.Configuration
 {
     public class Config
     {
@@ -11,17 +11,13 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
         {
             return new List<ApiResource>
             {
-                new ApiResource("orders", "Orders Service"),
-                new ApiResource("basket", "Basket Service"),
+                new ApiResource("zipcode", "ZipCode Service"),
                 new ApiResource("marketing", "Marketing Service"),
-                new ApiResource("locations", "Locations Service"),
-                new ApiResource("mobileshoppingagg", "Mobile Shopping Aggregator"),
-                new ApiResource("webshoppingagg", "Web Shopping Aggregator")
+                new ApiResource("mobileexxatechagg", "Mobile ExxaTech Aggregator"),
+                new ApiResource("webexxatechagg", "Web ExxaTech Aggregator")
             };
         }
-
-        // Identity resources are data like user ID, name, or email address of a user
-        // see: http://docs.identityserver.io/en/release/configuration/resources.html
+        
         public static IEnumerable<IdentityResource> GetResources()
         {
             return new List<IdentityResource>
@@ -40,7 +36,7 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
                 new Client
                 {
                     ClientId = "js",
-                    ClientName = "eShop SPA OpenId Client",
+                    ClientName = "ExxaTech SPA OpenId Client",
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser = true,
                     RedirectUris =           { $"{clientsUrl["Spa"]}/" },
@@ -50,18 +46,16 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        "orders",
-                        "basket",
-                        "locations",
+                        IdentityServerConstants.StandardScopes.Profile,                        
+                        "zipcode",                        
                         "marketing",
-                        "webshoppingagg"
+                        "webexxatechagg"
                     }
                 },
                 new Client
                 {
                     ClientId = "xamarin",
-                    ClientName = "eShop Xamarin OpenId Client",
+                    ClientName = "ExxaTech Xamarin OpenId Client",
                     AllowedGrantTypes = GrantTypes.Hybrid,                    
                     //Used to retrieve the access token on the back channel.
                     ClientSecrets =
@@ -72,17 +66,15 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
                     RequireConsent = false,
                     RequirePkce = true,
                     PostLogoutRedirectUris = { $"{clientsUrl["Xamarin"]}/Account/Redirecting" },
-                    AllowedCorsOrigins = { "http://eshopxamarin" },
+                    AllowedCorsOrigins = { "http://exxatechxamarin" },
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        IdentityServerConstants.StandardScopes.OfflineAccess,
-                        "orders",
-                        "basket",
-                        "locations",
+                        IdentityServerConstants.StandardScopes.OfflineAccess,                        
+                        "zipcode",
                         "marketing",
-                        "mobileshoppingagg"
+                        "mobileexxatechagg"
                     },
                     //Allow requesting refresh tokens for long lived API access
                     AllowOfflineAccess = true,
@@ -115,11 +107,9 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.OfflineAccess,
-                        "orders",
-                        "basket",
-                        "locations",
+                        "zipcode",
                         "marketing",
-                        "webshoppingagg"
+                        "webexxatechagg"
                     },
                 },
                 new Client
@@ -148,26 +138,24 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.OfflineAccess,
-                        "orders",
-                        "basket",
-                        "locations",
+                        "zipcode",
                         "marketing",
-                        "webshoppingagg"
+                        "webexxatechagg"
                     },
                 },
                 new Client
                 {
-                    ClientId = "locationsswaggerui",
-                    ClientName = "Locations Swagger UI",
+                    ClientId = "zipcodeswaggerui",
+                    ClientName = "ZipCode Swagger UI",
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser = true,
 
-                    RedirectUris = { $"{clientsUrl["LocationsApi"]}/swagger/o2c.html" },
-                    PostLogoutRedirectUris = { $"{clientsUrl["LocationsApi"]}/swagger/" },
+                    RedirectUris = { $"{clientsUrl["ZipCodeApi"]}/swagger/o2c.html" },
+                    PostLogoutRedirectUris = { $"{clientsUrl["ZipCodeApi"]}/swagger/" },
 
                     AllowedScopes =
                     {
-                        "locations"
+                        "zipcode"
                     }
                 },
                 new Client
@@ -184,56 +172,26 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
                     {
                         "marketing"
                     }
-                },
+                },                                
                 new Client
                 {
-                    ClientId = "basketswaggerui",
-                    ClientName = "Basket Swagger UI",
+                    ClientId = "mobileexxatechswaggerui",
+                    ClientName = "Mobile ExxaTech Aggregattor Swagger UI",
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser = true,
 
-                    RedirectUris = { $"{clientsUrl["BasketApi"]}/swagger/o2c.html" },
-                    PostLogoutRedirectUris = { $"{clientsUrl["BasketApi"]}/swagger/" },
+                    RedirectUris = { $"{clientsUrl["MobileExxaTechAgg"]}/swagger/o2c.html" },
+                    PostLogoutRedirectUris = { $"{clientsUrl["MobileExxaTechAgg"]}/swagger/" },
 
                     AllowedScopes =
                     {
-                        "basket"
+                        "mobileexxatechagg"
                     }
                 },
                 new Client
                 {
-                    ClientId = "orderingswaggerui",
-                    ClientName = "Ordering Swagger UI",
-                    AllowedGrantTypes = GrantTypes.Implicit,
-                    AllowAccessTokensViaBrowser = true,
-
-                    RedirectUris = { $"{clientsUrl["OrderingApi"]}/swagger/o2c.html" },
-                    PostLogoutRedirectUris = { $"{clientsUrl["OrderingApi"]}/swagger/" },
-
-                    AllowedScopes =
-                    {
-                        "orders"
-                    }
-                },
-                new Client
-                {
-                    ClientId = "mobileshoppingaggswaggerui",
-                    ClientName = "Mobile Shopping Aggregattor Swagger UI",
-                    AllowedGrantTypes = GrantTypes.Implicit,
-                    AllowAccessTokensViaBrowser = true,
-
-                    RedirectUris = { $"{clientsUrl["MobileShoppingAgg"]}/swagger/o2c.html" },
-                    PostLogoutRedirectUris = { $"{clientsUrl["MobileShoppingAgg"]}/swagger/" },
-
-                    AllowedScopes =
-                    {
-                        "mobileshoppingagg"
-                    }
-                },
-                new Client
-                {
-                    ClientId = "webshoppingaggswaggerui",
-                    ClientName = "Web Shopping Aggregattor Swagger UI",
+                    ClientId = "webexxatechaggswaggerui",
+                    ClientName = "Web ExxaTech Aggregattor Swagger UI",
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser = true,
 
@@ -242,7 +200,7 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
 
                     AllowedScopes =
                     {
-                        "webshoppingagg"
+                        "webexxatechagg"
                     }
                 }
 

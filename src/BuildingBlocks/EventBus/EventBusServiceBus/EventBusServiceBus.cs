@@ -1,10 +1,10 @@
-﻿namespace Microsoft.eShopOnContainers.BuildingBlocks.EventBusServiceBus
+﻿namespace Microsoft.ExxaTechServices.BuildingBlocks.EventBusServiceBus
 {
     using Autofac;
     using Microsoft.Azure.ServiceBus;
-    using Microsoft.eShopOnContainers.BuildingBlocks.EventBus;
-    using Microsoft.eShopOnContainers.BuildingBlocks.EventBus.Abstractions;
-    using Microsoft.eShopOnContainers.BuildingBlocks.EventBus.Events;
+    using Microsoft.ExxaTechServices.BuildingBlocks.EventBus;
+    using Microsoft.ExxaTechServices.BuildingBlocks.EventBus.Abstractions;
+    using Microsoft.ExxaTechServices.BuildingBlocks.EventBus.Events;
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;

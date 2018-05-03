@@ -1,4 +1,4 @@
-﻿namespace Microsoft.eShopOnContainers.Services.Identity.API.Models.ManageViewModels
+﻿namespace Microsoft.ExxaTechServices.Services.Identity.API.Models.ManageViewModels
 {
     public class RemoveLoginViewModel
     {

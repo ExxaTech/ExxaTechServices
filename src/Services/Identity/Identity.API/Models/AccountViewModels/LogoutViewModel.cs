@@ -1,4 +1,4 @@
-﻿namespace Microsoft.eShopOnContainers.Services.Identity.API.Models.AccountViewModels
+﻿namespace Microsoft.ExxaTechServices.Services.Identity.API.Models.AccountViewModels
 {
     public class LogoutViewModel
     {
